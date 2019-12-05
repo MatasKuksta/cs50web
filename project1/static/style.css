@@ -1,0 +1,296 @@
+.parent{
+  /* background-image: url(firebg.jpg); */
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+}
+
+body{
+  margin: 0;
+  background: rgb(241,241,241);
+  background: linear-gradient(90deg, rgba(241,241,241,1) 0%, rgba(71,147,196,1) 100%);
+  background-size: 100vw 100vh;
+  background-repeat: repeat-y;
+}
+
+#loginform{
+  width: 500px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 20%;
+}
+
+#loginname{
+  height: 30px;
+  width: 200px;
+  position: absolute;
+  left: 30%;
+  outline: none;
+  top: 200px;
+  text-align: center;
+  border-radius: 20px;
+  border: none;
+  }
+
+#loginpass{
+  height: 30px;
+  width: 200px;
+  position: absolute;
+  outline: none;
+  left: 30%;
+  top: 300px;
+  text-align: center;
+  border-radius: 50px;
+  border: none;
+  }
+
+#loginbutton{
+  background: rgb(128,129,151);
+  width: 150px;
+  height: 70px;
+  position: absolute;
+  outline: none;
+  left: 36%;
+  top: 400px;
+  border-radius: 50px;
+  border: none;
+}
+
+.loginbtntext{
+  color: white;
+  font-size: 20px;
+}
+
+:hover#loginname{
+  position: absolute;
+  top: 190px;
+  transition: 1s;
+}
+
+:hover#loginpass{
+  position: absolute;
+  top: 290px;
+  transition: 1s;
+}
+
+:hover#loginbutton{
+  position: absolute;
+  top: 390px;
+  transition: top 0.7s, background-color 2s;
+  background-color: #07A1A7;
+}
+
+
+#registerbutton{
+  background: rgb(0,2,49);
+  width: 150px;
+  height: 70px;
+  position: absolute;
+  outline: none;
+  left: 36%;
+  top: 400px;
+  border-radius: 50px;
+  border: none;
+}
+
+:hover#registerbutton{
+  position: absolute;
+  top: 390px;
+  transition: top 0.7s, background-color 2s;
+  background-color: #3f67c3;
+}
+
+#registerform{
+  width: 500px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 20%;
+}
+
+#searchbutton{
+  background: rgb(0,2,49);
+  width: 150px;
+  height: 70px;
+  position: absolute;
+  outline: none;
+  left: 36%;
+  top: 270px;
+  border-radius: 50px;
+  border: none;
+}
+
+#searchtxt{
+  height: 30px;
+  width: 200px;
+  position: absolute;
+  outline: none;
+  left: 30%;
+  top: 170px;
+  text-align: center;
+  border-radius: 50px;
+  border: none;
+}
+
+.bookinfo{
+  height: 30px;
+  width: 200px;
+  background-color: white;
+  outline: none;
+  text-align: center;
+  border-radius: 50px;
+  border: none;
+}
+
+.bookform{
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.5);
+    /* border-radius: 20%; */
+}
+
+#bookform1{
+    width: 500px;
+    height: 500px;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 20%;
+}
+
+.bookform2{
+  height: 432px;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-evenly;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20%;
+}
+
+.bookinf{
+  position: relative;
+  top: 20%;
+}
+
+#logtoreg{
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  background: rgb(0,2,49);
+  width: 100px;
+  height: 50px;
+  outline: none;
+  border-radius: 50px;
+  border: none;
+}
+
+.textbo{
+  height: 50px;
+  width: 200px;
+  outline: none;
+  text-align: center;
+  border-radius: 50px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin-top: 30px;
+}
+
+.thefield{
+  background-color: white;
+}
+
+.text{
+  color: black;
+  padding-top: 15px;
+}
+
+#reviewbox{
+  width: 500px;
+  height: 500px;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 20%;
+  overflow-y: scroll;
+}
+
+#review01{
+  color: black;
+  font-size: 20px;
+  position: absolute;
+  top: 20px;
+  margin-top: 20px;
+}
+
+#reviewtxt{
+  width: 300px;
+  height: 200px;
+  border: none;
+  background-color: rgba(255, 255, 255, 1);
+  outline: none;
+  resize: none;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+#reviewnum{
+ height: 50px;
+ width: 80px;
+ text-align: center;
+ border-radius: 50px;
+ outline: none;
+ border: none;
+ padding-right: 3px;
+ margin: 20px;
+}
+
+#reviewform{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+#reviewbutton{
+  height: 50px;
+  width: 80px;
+  text-align: center;
+  border-radius: 50px;
+  outline: none;
+  border: none;
+  margin: 20px;
+}
+
+#otherreviewtext{
+  background-color: white;
+  color: black;
+  padding: 8px;
+  border-radius: 5px;
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type"text/css" href="../static/style.css">
+    <title>SAMPLE</title>
+  </head>
+  <body>
+    <div class="parent">
+      <div class="bookform">
+        <div class="bookform2" style="color:white">
+          {% for book in bookss %}
+          <form action="/book" name="formos" id="forma" method="post">
+              {% for book in bookss %}
+              <input type="text" name="result" id="result" class="result" style="display: none;">
+              <div onClick="submitForm('{{book[1]}}');" class="textbo"><p class="text">{{book[2]}} by {{book[3]}}</p></div>
+              {% endfor %}
+          </form>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <script>
+        document.getElementById("result").style.display = 'none';
+        function submitForm(data) {
+            document.getElementById("result").setAttribute("value", data);
+            var form = document.getElementById("forma");
+            form.submit();
+        }
+    </script>
+  </body>
+</html>
