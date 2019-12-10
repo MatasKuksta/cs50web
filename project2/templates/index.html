@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="eng" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>sucks</title>
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      var socket = io('http://' + document.domain + ':' + location.port);
+
+      socket.on('connect', function() {
+          socket.emit('my event', {
+            data: 'User connected'
+      })
+      var form = $('form').on('submit', function(e){
+        e.preventDefault()
+        let username = $('input.username').val()
+        let message = $('input.message').val()
+        socket.emit('my event',{
+          username : username,
+          message : message
+        })
+        $('input.message').val('').focus()
+      })
+    })
+    socket.on('my response', function(msg){
+      console.log(msg)
+      if(typeof msg.username !== 'undefined'){
+        $('h3').remove()
+        $('div.message_holder').append('<div><b style="color: #000">'+msg.user_name+'</b> '+msg.message+'</div>')
+      }
+    })
+      ;
+    </script>
+  </head>
+  <body>
+    <div id="parent">
+      <div class="message_holder">
+
+      </div>
+      <div class="mid">
+        <form class="mid" action="" method="post">
+          <input type="text" class="username" name="username" placeholder="username">
+          <input type="text" name="message" class="message" placeholder="message">
+          <input type="button" name="Submit" value="Submit" id="submit">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

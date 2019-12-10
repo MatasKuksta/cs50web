@@ -1,0 +1,63 @@
+body{
+  background-image: linear-gradient(to right, #d299c2 0%, #fef9d7 100%);
+}
+
+#parent{
+  background-image: linear-gradient(to right, #d299c2 0%, #fef9d7 100%);
+}
+
+.mid{
+  width: 600px;
+  height: 500px;
+  margin-top: auto;
+  margin-bottom: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding-top: 100px;
+}
+
+
+.message{
+  background-color: rgba(255,255,255, 0.5);
+  color: black;
+  margin-left: 20px;
+  text-align: center;
+  text-transform: capitalize;
+  resize: none;
+  height: 40px;
+  width: 150px;
+  border: none;
+  outline: none;
+  line-height: 40px;
+}
+
+
+#submit{
+  width: 60px;
+  height: 30px;
+  margin-left: 20px;
+  background-color: #ffc0cb;
+  color: white;
+  outline: none;
+  border: none;
+}
+
+#submit:hover{
+  background-color: white;
+  color: black;
+  transition: 0.7s;
+}
+
+
+.username{
+  width: 142px;
+  height: 40px;
+  background-color: rgba(255,255,255, 0.5);
+  text-align: center;
+  border: none;
+  outline: none;
+  text-transform: capitalize;
+
+}
