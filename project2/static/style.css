@@ -63,6 +63,46 @@ body{
 
 .message_holder{
   height: 350px;
-  width: 100vw;
+  width: 90vw;
   overflow: scroll;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+#channels{
+  height: 100px;
+  width: 500px;
+  display: flex;
+  justify-content: space-around;
+  background-color: rgba(0,0,0,0.2);
+}
+
+#create{
+  height: 30px;
+  width: 60px;
+  background-color: #ffc0cb;
+  color: white;
+  outline: none;
+  border: none;
+}
+
+#create:hover{
+  background-color: white;
+  color: black;
+  transition: 0.7s;
+}
+
+#channelname{
+  border: none;
+  background-color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  height: 30px;
+  outline: none;
+  margin-top: 20px;
+}
+
+#channelcreate{
+  display: none;
 }

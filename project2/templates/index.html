@@ -17,6 +17,10 @@
           <input type="submit" name="Submit" value="Submit" id="submit"/>
         </form>
       </div>
+        <input type="button" name="button" id="create" value="+ Create">
+      <div id="channelcreate">
+        <input type="text" name="" placeholder="Channel name" id="channelname">
+      </div>
     </div>
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -44,14 +48,13 @@
   var msgA = [];
   socket.on('my response', function(msg){
     $('div.message_holder').empty();
-
     console.log(msg)
     let time = new Date().toLocaleTimeString();
     if(typeof msg.user_name !== 'undefined'){
       msgA.push(msg)
       var divA = []
       msgA.forEach(message => {
-        $('div.message_holder').append('<div><span style="color: rgba(0,0,0,0.5); font-size: 13px">'+time+'</span><b style="color: black">'+"   "+message.user_name+"   "+'</b> '+message.message+'</div>')
+        $('div.message_holder').prepend('<div><span style="color: rgba(0,0,0,0.5); font-size: 13px">'+time+'</span><b style="color: black">'+"   "+message.user_name+"   "+'</b> '+message.message+'</div>')
         })
       console.warn(msgA);
       if(msgA.length > 99)
@@ -59,6 +62,12 @@
           msgA.shift()
       }
     }
+  })
+  var channelS = [];
+  $(document).ready(function(){
+    $("#create").click(function(){
+      $("#channelcreate").toggle();
+    })
   })
     ;
   </script>
