@@ -59,5 +59,9 @@ body{
   border: none;
   outline: none;
   text-transform: capitalize;
+}
 
+.message_holder{
+  height: 300px;
+  width: 300px;
 }
