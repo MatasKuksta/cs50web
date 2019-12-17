@@ -19,7 +19,11 @@
       </div>
         <input type="button" name="button" id="create" value="+ Create">
       <div id="channelcreate">
-        <input type="text" name="" placeholder="Channel name" id="channelname">
+        <input type="text" name="" placeholder="Channel name" id="channelname" required>
+        <input type="button" onClick="renderChanels()" name="" value="Submit" id="chancreate">
+      </div>
+      <div id="channelholder">
+
       </div>
     </div>
   </body>
@@ -63,12 +67,25 @@
       }
     }
   })
-  var channelS = [];
   $(document).ready(function(){
     $("#create").click(function(){
       $("#channelcreate").toggle();
     })
   })
-    ;
+
+  function channels(){
+    let name = document.getElementById('channelname').value
+    const channeL = document.createElement('div')
+    channeL.className = 'divchannel'
+    channeL.innerHTML = name
+    return channeL;
+  };
+
+  function renderChanels(){
+    const holder = document.getElementById('channelholder')
+    holder.innerHTML += channels();
+  }
+  document.getElementById('chancreate').onClick = function() {renderChanels()}
+  ;
   </script>
 </html>
