@@ -19,8 +19,8 @@
       </div>
         <input type="button" name="button" id="create" value="+ Create">
       <div id="channelcreate">
-        <input type="text" name="" placeholder="Channel name" id="channelname" required>
-        <input type="button" onClick="renderChanels()" name="" value="Submit" id="chancreate">
+        <input type="text" name="" placeholder="Channel name" id="channelname" required/>
+        <input type="button" onClick="renderChannels()" name="" value="Submit" id="chancreate">
       </div>
       <div id="channelholder">
 
@@ -72,20 +72,33 @@
       $("#channelcreate").toggle();
     })
   })
-
+  var channelnames = []
   function channels(){
     let name = document.getElementById('channelname').value
+    if(!name){
+      return false;
+    }
+    if(!channelnames.includes(name)){
     const channeL = document.createElement('div')
     channeL.className = 'divchannel'
-    channeL.innerHTML = name
+    channeL.innerText = name
+    channelnames.push(name)
+    console.warn(channelnames)
     return channeL;
+    }
+    return false;
   };
 
-  function renderChanels(){
-    const holder = document.getElementById('channelholder')
-    holder.innerHTML += channels();
+  function renderChannels(){
+    const holder = document.getElementById('channelholder');
+    // holder.innerHTML += channels().toString();
+    let chanel = channels();
+    if(chanel) {
+    holder.appendChild(chanel);
   }
-  document.getElementById('chancreate').onClick = function() {renderChanels()}
+  }
+  document.getElementById('chancreate').onClick = function() {renderChannels()}
   ;
+
   </script>
 </html>
