@@ -12,7 +12,7 @@
       </div>
       <div class="mid">
         <form action="" method="post">
-          <input type="text" class="username" name="username" placeholder="username" required/>
+          <input type="text" class="username" name="username" placeholder="username" id="userinputname" required/>
           <input type="text" name="message" class="message" placeholder="message" required/>
           <input type="submit" name="Submit" value="Submit" id="submit"/>
         </form>
@@ -41,6 +41,8 @@
       e.preventDefault()
       let user_name = $('input.username').val()
       let user_input = $('input.message').val()
+      document.getElementById('userinputname').disabled = true
+
 
       socket.emit('sendmsg',{
         user_name : user_name,
@@ -72,7 +74,9 @@
       $("#channelcreate").toggle();
     })
   })
+  let a = 0
   var channelnames = []
+  var cHANNEL = []
   function channels(){
     let name = document.getElementById('channelname').value
     if(!name){
@@ -80,7 +84,8 @@
     }
     if(!channelnames.includes(name)){
     const channeL = document.createElement('div')
-    channeL.className = 'divchannel'
+    a++
+    channeL.className = "ree" + a +" divchannel"
     channeL.innerText = name
     channelnames.push(name)
     console.warn(channelnames)
@@ -95,10 +100,13 @@
     let chanel = channels();
     if(chanel) {
     holder.appendChild(chanel);
+    }
   }
-  }
-  document.getElementById('chancreate').onClick = function() {renderChannels()}
-  ;
+  document.getElementById('chancreate').onClick = function() {renderChannels()
+  };
 
+  function ree(){
+
+  }
   </script>
 </html>
