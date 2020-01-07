@@ -126,11 +126,31 @@ body{
   height: 20px;
   background-color: pink;
   color: white;
-  margin-top: 8px;
+  margin-top: 12px;
   text-align: center;
   overflow: scroll;
   padding-left: 5px;
   padding-right: 5px;
-  font-size: 13px;
-  line-height: 20px; 
+  font-size: 11px;
+  line-height: 18px; 
+  outline: none;
+  border: none;
+}
+
+.divchannel:hover{
+  background-color: white;
+  color: black;
+  transition: 0.7s;
+}
+
+.divchannel:focus{
+  border: none;
+  outline: none;
+}
+
+
+#channelholder{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }

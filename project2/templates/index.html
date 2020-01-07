@@ -124,7 +124,7 @@
       $('div.message_holder').empty();
       let time = new Date().toLocaleTimeString();
       msgA[currentChannel].forEach(message => {
-        $('div.message_holder').prepend('<div><span style="color: rgba(0,0,0,0.5); font-size: 13px">'+time+'</span><b style="color: black">'+"   "+message.user_name+"   "+'</b> '+message.message+'</div>')
+        $('div.message_holder').prepend('<div><span style="color: rgba(0,0,0,0.5); font-size: 11px">'+time+'</span><b style="color: black">'+"   "+message.user_name+"   "+'</b> '+message.message+'</div>')
       });
   }
   </script>
