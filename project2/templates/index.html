@@ -51,17 +51,13 @@
       $('input.message').val('').focus()
     })
   })
-  var msgA = [];
+
   socket.on('my response', function(msg){
-    $('div.message_holder').empty();
     console.log(msg)
     let time = new Date().toLocaleTimeString();
     if(typeof msg.user_name !== 'undefined'){
-      msgA.push(msg)
-      var divA = []
-      msgA.forEach(message => {
-        $('div.message_holder').prepend('<div><span style="color: rgba(0,0,0,0.5); font-size: 13px">'+time+'</span><b style="color: black">'+"   "+message.user_name+"   "+'</b> '+message.message+'</div>')
-        })
+      msgA = {...msgA, [currentChannel]: [...msgA[currentChannel] , msg]};
+      renderMsg();
       console.warn(msgA);
       if(msgA.length > 99)
       {
@@ -74,29 +70,41 @@
       $("#channelcreate").toggle();
     })
   })
-  let a = 0
-  var channelnames = []
-  var cHANNEL = []
+  var msgA = {};
+  var currentChannel = 'index';
+  let a = 0;
+  var channelName = [];
+
   function channels(){
-    let name = document.getElementById('channelname').value
+
+    let name = document.getElementById('channelname').value;
+    if(!name){
+      name = currentChannel;
+    }
+    currentChannel = name;
     if(!name){
       return false;
     }
-    if(!channelnames.includes(name)){
-    const channeL = document.createElement('div')
-    a++
-    channeL.className = "ree" + a +" divchannel"
-    channeL.innerText = name
-    channelnames.push(name)
-    console.warn(channelnames)
-    return channeL;
+    if(!channelName.includes(name)){
+      const channeL = document.createElement('button');
+      a++
+      channeL.className = "ree" + a +" divchannel";
+      channeL.innerText = name;
+      document.getElementById('channelname').value='';
+      channeL.addEventListener( 'click', function(){
+          renderChannel2(name)
+      } );
+      channelName.push(name);
+      msgA = {...msgA, [currentChannel]: []};
+      renderMsg();
+      console.log("Kviecia", channeL);
+      return channeL;
     }
     return false;
   };
 
   function renderChannels(){
     const holder = document.getElementById('channelholder');
-    // holder.innerHTML += channels().toString();
     let chanel = channels();
     if(chanel) {
     holder.appendChild(chanel);
@@ -104,9 +112,20 @@
   }
   document.getElementById('chancreate').onClick = function() {renderChannels()
   };
+  $( document ).ready(function() {
+    renderChannels();
+});
+  function renderChannel2(channelN){
+    currentChannel = channelN;
+    renderMsg();
+  }
 
-  function ree(){
-
+  function renderMsg() {
+      $('div.message_holder').empty();
+      let time = new Date().toLocaleTimeString();
+      msgA[currentChannel].forEach(message => {
+        $('div.message_holder').prepend('<div><span style="color: rgba(0,0,0,0.5); font-size: 13px">'+time+'</span><b style="color: black">'+"   "+message.user_name+"   "+'</b> '+message.message+'</div>')
+      });
   }
   </script>
 </html>
