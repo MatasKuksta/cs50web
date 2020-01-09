@@ -17,20 +17,32 @@ def handle_my_custom_event(json, methods=['GET', 'POST']):
     print('recieved my event: '+ str(json))
     socketio.emit('my response', json)
 
+strdData = []
 
-@socketio.on('join')
-def on_join(data):
-    username = data['username']
-    room = data['room']
-    join_room(room)
-    send(username + ' has entered the room.', room=room)
+@socketio.on('connect')
+def handle_my_event(methods=['GET', 'POST']):
+    print('recieved my stored data: ')
+    emit('load', strdData)
+    # socketio.emit('my respon', json)
 
-@socketio.on('leave')
-def on_leave(data):
-    username = data['username']
-    room = data['room']
-    leave_room(room)
-    send(username + ' has left the room.', room=room)
+
+# @socketio.on('join')
+# def on_join(data):
+#     username = data['username']
+#     room = data['room']
+#     join_room(room)
+#     send(username + ' has entered the room.', room=room)
+#
+# @socketio.on('leave')
+# def on_leave(data):
+#     username = data['username']
+#     room = data['room']
+#     leave_room(room)
+#     send(username + ' has left the room.', room=room)
+
+
+# @socketio.on('send')
+# def on_send(json)
 
 
 if __name__ == '__main__':

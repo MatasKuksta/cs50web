@@ -35,7 +35,7 @@
 
     socket.on('connect', function() {
         socket.emit('sendmsg', {
-          data: 'User connected'
+          data: "User connected"
     })
     var form = $('form').on('submit', function(e){
       e.preventDefault()
@@ -46,22 +46,22 @@
 
       socket.emit('sendmsg',{
         user_name : user_name,
-        message : user_input
+        message : user_input,
+        stored_data: storedData
       })
       $('input.message').val('').focus()
     })
   })
 
   socket.on('my response', function(msg){
-    console.log(msg)
     let time = new Date().toLocaleTimeString();
     if(typeof msg.user_name !== 'undefined'){
       msgA = {...msgA, [currentChannel]: [...msgA[currentChannel] , msg]};
       renderMsg();
-      console.warn(msgA);
-      if(msgA.length > 99)
+      console.log(msgA);
+      if(msgA[currentChannel].length > 99)
       {
-          msgA.shift()
+          msgA[currentChannel].shift()
       }
     }
   })
@@ -70,10 +70,14 @@
       $("#channelcreate").toggle();
     })
   })
-  var msgA = {};
+  var msgA = [];
   var currentChannel = 'default';
   let a = 0;
   var channelName = [];
+  var storedData = {
+    channels: channelName,
+    messages: msgA
+  }
 
   function channels(){
 
@@ -127,5 +131,16 @@
         $('div.message_holder').prepend('<div><span style="color: rgba(0,0,0,0.5); font-size: 11px">'+time+'</span><b style="color: black">'+"   "+message.user_name+"   "+'</b> '+message.message+'</div>')
       });
   }
+
+
+
+  socket.on('load', function(strdData) {
+    console.warn("Retrieved data: ", strdData);
+    socket.emit('recievemsg', {
+      data: JSON.stringify(storedData)
+    })
+  })
+
+
   </script>
 </html>
