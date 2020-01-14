@@ -34,31 +34,34 @@
     var socket = io();
 
     socket.on('connect', function() {
-        socket.emit('sendmsg', {
-          data: "User connected"
-    })
+
     var form = $('form').on('submit', function(e){
       e.preventDefault()
-      let user_name = $('input.username').val()
-      let user_input = $('input.message').val()
+      let user_name = $('input.username').val();
+      let user_input = $('input.message').val();
       document.getElementById('userinputname').disabled = true
-
 
       socket.emit('sendmsg',{
         user_name : user_name,
         message : user_input,
-        stored_data: storedData
+        stored_data: {
+          username: user_name,
+          currentChannel: currentChannel,
+          channels: channelName,
+          messages: msgA
+        }
       })
       $('input.message').val('').focus()
     })
   })
 
   socket.on('my response', function(msg){
+    console.warn('Msg: ', msg);
     let time = new Date().toLocaleTimeString();
     if(typeof msg.user_name !== 'undefined'){
       msgA = {...msgA, [currentChannel]: [...msgA[currentChannel] , msg]};
       renderMsg();
-      console.log(msgA);
+      console.log('msg' ,msgA);
       if(msgA[currentChannel].length > 99)
       {
           msgA[currentChannel].shift()
@@ -74,13 +77,8 @@
   var currentChannel = 'default';
   let a = 0;
   var channelName = [];
-  var storedData = {
-    channels: channelName,
-    messages: msgA
-  }
 
   function channels(){
-
     let name = document.getElementById('channelname').value;
     if(!name){
       name = currentChannel;
@@ -101,7 +99,6 @@
       channelName.push(name);
       msgA = {...msgA, [currentChannel]: []};
       renderMsg();
-      console.log("Kviecia", channeL);
       return channeL;
     }
     return false;
@@ -116,9 +113,10 @@
   }
   document.getElementById('chancreate').onClick = function() {renderChannels()
   };
-  $( document ).ready(function() {
-    renderChannels();
-});
+//   $( document ).ready(function() {
+//     console.warn('Messages: ', msgA);
+//     renderChannels();
+// });
   function renderChannel2(channelN){
     currentChannel = channelN;
     renderMsg();
@@ -133,14 +131,15 @@
   }
 
 
-
   socket.on('load', function(strdData) {
     console.warn("Retrieved data: ", strdData);
-    socket.emit('recievemsg', {
-      data: JSON.stringify(storedData)
-    })
+    // msgA = {...msgA, [currentChannel]: [...msgA[currentChannel] , strdData]};
+    // channelName = strdData.stored_data.c
+      msgA = strdData.stored_data.messages;
+      channelName = strdData.stored_data.channels;
+      renderMsg();
+      renderChannels()
   })
-
 
   </script>
 </html>

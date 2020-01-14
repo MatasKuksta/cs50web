@@ -11,17 +11,22 @@ socketio = SocketIO(app)
 def index():
     return render_template("index.html")
 
+strdData = {  'stored_data': {
+            'channels': [],
+            'messages': {'default': []}
+            }}
 
 @socketio.on('sendmsg')
-def handle_my_custom_event(json, methods=['GET', 'POST']):
-    print('recieved my event: '+ str(json))
-    socketio.emit('my response', json)
+def handle_my_custom_event(messageData, methods=['GET', 'POST']):
+    print('recieved my event: '+ str(messageData))
+    global strdData
+    strdData = messageData
+    socketio.emit('my response', messageData);
 
-strdData = []
+print('Strd data: '+ str(strdData))
 
 @socketio.on('connect')
 def handle_my_event(methods=['GET', 'POST']):
-    print('recieved my stored data: ')
     emit('load', strdData)
     # socketio.emit('my respon', json)
 
