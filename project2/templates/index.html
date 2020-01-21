@@ -28,7 +28,6 @@
     </div>
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <!-- <script src="https://cdn.socket.io/socket.io-1.0.0.js"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js" integrity="" crossorigin="anonymous"></script>
   <script type="text/javascript">
     var socket = io();
@@ -56,12 +55,10 @@
   })
 
   socket.on('my response', function(msg){
-    console.warn('Msg: ', msg);
     let time = new Date().toLocaleTimeString();
     if(typeof msg.user_name !== 'undefined'){
       msgA = {...msgA, [currentChannel]: [...msgA[currentChannel] , msg]};
       renderMsg();
-      console.log('msg' ,msgA);
       if(msgA[currentChannel].length > 99)
       {
           msgA[currentChannel].shift()
@@ -78,16 +75,7 @@
   let a = 0;
   var channelName = [];
 
-  function channels(){
-    let name = document.getElementById('channelname').value;
-    if(!name){
-      name = currentChannel;
-    }
-    currentChannel = name;
-    if(!name){
-      return false;
-    }
-    if(!channelName.includes(name)){
+  function channels(name){
       const channeL = document.createElement('button');
       a++
       channeL.className = "ree" + a +" divchannel";
@@ -96,27 +84,39 @@
       channeL.addEventListener( 'click', function(){
           renderChannel2(name)
       } );
-      channelName.push(name);
-      msgA = {...msgA, [currentChannel]: []};
       renderMsg();
       return channeL;
-    }
     return false;
   };
 
   function renderChannels(){
-    const holder = document.getElementById('channelholder');
-    let chanel = channels();
-    if(chanel) {
-    holder.appendChild(chanel);
+    let chnlname = document.getElementById('channelname').value;
+    if(!chnlname){
+      chnlname = currentChannel;
     }
-  }
-  document.getElementById('chancreate').onClick = function() {renderChannels()
-  };
-//   $( document ).ready(function() {
-//     console.warn('Messages: ', msgA);
-//     renderChannels();
-// });
+    currentChannel = chnlname;
+
+    if(!chnlname){
+      return false;
+    }
+
+    if(!channelName.includes(chnlname)){
+      channelName.push(chnlname);
+      msgA = {...msgA, [currentChannel]: []};
+    }
+
+    const holder = document.getElementById('channelholder');
+    holder.innerHTML = null;
+    channelName.map(n => {
+        let chanel = channels(n);
+        if(chanel) {
+        holder.appendChild(chanel);
+      }
+    })
+};
+
+document.getElementById('chancreate').onClick = function() {renderChannels()};
+
   function renderChannel2(channelN){
     currentChannel = channelN;
     renderMsg();
@@ -133,10 +133,10 @@
 
   socket.on('load', function(strdData) {
     console.warn("Retrieved data: ", strdData);
-    // msgA = {...msgA, [currentChannel]: [...msgA[currentChannel] , strdData]};
-    // channelName = strdData.stored_data.c
       msgA = strdData.stored_data.messages;
+      document.getElementById("userinputname").value = strdData.stored_data.username;
       channelName = strdData.stored_data.channels;
+      currentChannel = strdData.stored_data.currentChannel;
       renderMsg();
       renderChannels()
   })
