@@ -1,8 +1,9 @@
-from django.http import HttpResponse
-from django.contrib.auth import login, authenticate, logout
-from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
-from django.urls import reverse
+from django.http                    import HttpResponse
+from django.contrib.auth            import login, authenticate, logout
+from django.shortcuts               import render, redirect
+from django.contrib.auth.models     import User
+from django.urls                    import reverse
+from django.template                import RequestContext
 
 # Create your views here.
 def index(request):
@@ -16,10 +17,12 @@ def register(request):
         firstname = request.POST["firstname"]
         lastname = request.POST["lastname"]
         if User.objects.filter(username=username).exists():
-            return render(request, "register.html", {"message": "Username already exists"})
+            return render(request, "register.html", {"message": "username already exists"})
         else:
             user = User.objects.create_user(username, email, password)
             user.first_name = firstname
             user.last_name = lastname
             user.save()
             return render(request, "login.html")
+    else:
+        return render(request, "register.html")
