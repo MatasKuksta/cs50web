@@ -1,5 +1,5 @@
-from django.contrib import admin
-from .models import Toppings, Subs, Pasta, Salads, Platters, Kind, Size, Pizza
+from django.contrib         import admin
+from .models                import Toppings, Subs, Pasta, Salads, Platters, Kind, Size, Pizza
 
 # Register your models here.
 admin.site.register(Toppings)
