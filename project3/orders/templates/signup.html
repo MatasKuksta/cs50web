@@ -6,6 +6,7 @@
         <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     </head>
     <body>
+        <a href="{% url 'login' %}">Login</a>
         <form action="{% url 'register' %}" method="post">
             {% csrf_token %}
             <input name="username" type="text" placeholder="Username" required/>
@@ -13,7 +14,7 @@
             <input name="email" type="text" placeholder="Email" required/>
             <input name="firstname" type="text" placeholder="First Name" required/>
             <input name="lastname" type="text" placeholder="Last Name" required/>
-            <input type="submit" value="Login"/>
+            <input type="submit" value="Register"/>
         </form>
     </body>
 </html>
