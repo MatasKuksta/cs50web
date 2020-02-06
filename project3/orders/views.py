@@ -1,16 +1,12 @@
 from django.http import HttpResponse
-from django.shortcuts import render
-from django.contrib.auth import login, authenticate
-from .forms import SignUpForm
+from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 
 # Create your views here.
 def index(request):
     return render(request, "index.html")
-
 
 def register(request):
     if request.method == "POST":
@@ -26,4 +22,4 @@ def register(request):
             user.first_name = firstname
             user.last_name = lastname
             user.save()
-            return render(request, "orders/login.html")
+            return render(request, "login.html")
