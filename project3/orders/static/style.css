@@ -1,0 +1,9 @@
+.margin{
+  margin: 10px;
+}
+
+.right{
+  position: absolute;
+  right: 50px;
+  margin-top: 10px;
+}

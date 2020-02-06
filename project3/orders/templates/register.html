@@ -3,17 +3,17 @@
     <head>
         <title>Register</title>
         {% load static %}
-        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-    </head>
+        <link rel="stylesheet" type="text/css" href="../static/style.css">
     <body>
+        <a href="/login"><p class="right">login</p></a><br>
         <form action="{% url 'register' %}" method="post">
             {% csrf_token %}
-            <input name="username" type="text" placeholder="Username" required/><br>
-            <input name="password" type="password" placeholder="Password" required/><br>
-            <input name="email" type="text" placeholder="Email" required/><br>
-            <input name="firstname" type="text" placeholder="First Name" required/><br>
-            <input name="lastname" type="text" placeholder="Last Name" required/><br>
-            <input type="submit" value="Register"/>
+            <input class="margin" name="username" type="text" placeholder="Username" required/><br>
+            <input class="margin" name="password" type="password" placeholder="Password" required/><br>
+            <input class="margin" name="email" type="text" placeholder="Email" required/><br>
+            <input class="margin" name="firstname" type="text" placeholder="First Name" required/><br>
+            <input class="margin" name="lastname" type="text" placeholder="Last Name" required/><br>
+            <input class="margin" type="submit" value="Register"/>
         </form>
     </body>
 </html>
