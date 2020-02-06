@@ -16,7 +16,7 @@ def register(request):
         firstname = request.POST["firstname"]
         lastname = request.POST["lastname"]
         if User.objects.filter(username=username).exists():
-            return render(request, "signup.html", {"message": "Username already exists"})
+            return render(request, "register.html", {"message": "Username already exists"})
         else:
             user = User.objects.create_user(username, email, password)
             user.first_name = firstname
