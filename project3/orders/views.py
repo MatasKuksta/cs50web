@@ -56,4 +56,18 @@ def pizza(request):
     kind = request.POST["pkind"]
     size = request.POST["psize"]
     name = request.POST["pname"]
-    
+    if name == "1 topping":
+        topping1 = request.POST["topping1"]
+
+
+def mhelp():
+    context = {
+        "size": Size.objects.all(),
+        "kind": Kind.objects.all(),
+        "toppings": Toppings.objects.all(),
+        "Sub": Sub.objects.all(),
+        "Pasta": Pasta.objects.all(),
+        "Salads": Salads.objects.all(),
+        "Dinner": Dinner.objects.all(),
+    }
+    return context
