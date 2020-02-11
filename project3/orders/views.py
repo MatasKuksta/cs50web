@@ -9,6 +9,11 @@ from django.template                import RequestContext
 
 # Create your views here.
 def index(request):
+    if not request.user.is_authenticated:
+        return render(request, "login.html")
+    if not request.session:
+        request.session["saved"] = []
+        request.session["total"] = []
     return render(request, "index.html")
 
 def register(request):
@@ -45,3 +50,10 @@ def login(request):
 def logout(request):
     auth_logout(request)
     return render(request, "login.html", {"message": "logged out user"})
+
+
+def pizza(request):
+    kind = request.POST["pkind"]
+    size = request.POST["psize"]
+    name = request.POST["pname"]
+    
