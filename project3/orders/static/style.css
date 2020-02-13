@@ -1,3 +1,7 @@
+body{
+  background-color: black
+}
+
 .margin{
   margin: 10px;
 }
@@ -6,6 +10,8 @@
   position: absolute;
   right: 50px;
   margin-top: 10px;
+  color: lime;
+  font-weight: bold;
 }
 
 .center{

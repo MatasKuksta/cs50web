@@ -9,6 +9,9 @@
     <a href="/register"><p class="right">register</p></a><br>
     <a href="/login"><p class="right">login</p></a><br>
     <a href="/logout"><p class="right">logout</p></a><br>
+    <div id="stepsId">
+  <ol>
+    <li  id="li1">
     <table id="menu">
       <tr>
         <th colspan="3" style="font-size:30px;">MENU</th>
@@ -75,5 +78,23 @@
       </tr>
       {% endfor %}
     </table>
+  </li>
+  </ol>
+</div>
   </body>
+  <script type="text/javascript">
+  var colors = ["blue", "yellow", "red", "orange", "green"]
+  var currentColor = 0
+  var lis = document.querySelectorAll("#stepsId li")
+
+  function changeColor() {
+    --currentColor
+    if (currentColor < 0) currentColor = colors.length -1
+    for (var i = 0; i < lis.length; i++) {
+    lis[i].style.color = colors[(currentColor +i) % colors.length]
+  }
+  }
+
+  setInterval(changeColor, 100)
+  </script>
 </html>
