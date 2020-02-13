@@ -11,7 +11,7 @@
     <a href="/logout"><p class="right">logout</p></a><br>
     <table id="menu">
       <tr>
-        <th colspan="3">MENU</th>
+        <th colspan="3" style="font-size:30px;">MENU</th>
       </tr>
       <tr>
         <th colspan="3">PIZZA</th>
@@ -39,7 +39,7 @@
       </tr>
       {% for subs in Sub %}
       <tr>
-        <td colspan="3" class"center">
+        <td class="center" colspan="3">
           {{ subs }}
         </td>
       </tr>
@@ -49,7 +49,7 @@
       </tr>
       {% for pastas in Pasta %}
       <tr>
-        <td colspan="3" class"center">
+        <td class="center" colspan="3">
           {{ pastas }}
         </td>
       </tr>
@@ -59,8 +59,8 @@
       </tr>
       {% for salad in Salads %}
       <tr>
-        <td colspan="3" class"center">
-          {{ salads }}
+        <td class="center" colspan="3">
+          {{ salad }}
         </td>
       </tr>
       {% endfor %}
@@ -69,7 +69,7 @@
       </tr>
       {% for plate in Dinner %}
       <tr>
-        <td colspan="3" class"center">
+        <td class="center" colspan="3">
           {{ plate }}
         </td>
       </tr>

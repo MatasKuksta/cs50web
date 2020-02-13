@@ -14,21 +14,21 @@ class Subs(models.Model):
     priceLarge = models.FloatField(default=7.95)
 
     def __str__(self):
-        return f"{self.sub},{self.priceSmall},{self.priceLarge}"
+        return f"{self.sub}"
 
 class Pasta(models.Model):
     pasta = models.CharField(max_length=24)
     price = models.FloatField(default=8.75)
 
     def __str__(self):
-        return f"{self.pasta},{self.price}"
+        return f"{self.pasta}"
 
 class Salads(models.Model):
     salad = models.CharField(max_length=13)
     price = models.FloatField(default=8.25)
 
     def __str__(self):
-        return f"{self.salad},{self.price}"
+        return f"{self.salad}"
 
 class Platters(models.Model):
     platter = models.CharField(max_length=13)
@@ -36,7 +36,7 @@ class Platters(models.Model):
     priceLarge = models.FloatField(default=75)
 
     def __str__(self):
-        return f"{self.platter},{self.priceSmall},{self.priceLarge}"
+        return f"{self.platter}"
 
 class Kind(models.Model):
     kind = models.CharField(max_length=10)

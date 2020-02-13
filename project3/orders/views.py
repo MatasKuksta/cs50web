@@ -6,6 +6,7 @@ from django.shortcuts               import render, redirect
 from django.contrib.auth.models     import User
 from django.urls                    import reverse
 from django.template                import RequestContext
+from .models                        import Toppings, Subs, Pasta, Salads, Platters, Size, Kind, Pizza
 
 # Create your views here.
 def index(request):
@@ -14,7 +15,8 @@ def index(request):
     if not request.session:
         request.session["saved"] = []
         request.session["total"] = []
-    return render(request, "index.html")
+    content = mhelp()
+    return render(request, "index.html", content)
 
 def register(request):
     if request.method == "POST":
@@ -43,7 +45,7 @@ def login(request):
             auth_login(request, user)
             return HttpResponseRedirect(reverse("index"))
         else:
-            return redirect(request, "login.html", {"message": "username and password do not match"})
+            return redirect(request, "error.html")
     else:
         return render(request, "login.html")
 
@@ -58,16 +60,31 @@ def pizza(request):
     name = request.POST["pname"]
     if name == "1 topping":
         topping1 = request.POST["topping1"]
-
+        topping2 = '0'
+        topping3 = '0'
+    elif name == "2 toppings":
+        topping1 = request.POST["topping1"]
+        topping2 = request.POST["topping2"]
+        topping3 = '0'
+    elif name == "3 toppings":
+        topping1 = request.POST["topping1"]
+        topping2 = request.POST["topping2"]
+        topping3 = request.POST["topping3"]
+    else:
+        topping1 = '0'
+        topping2 = '0'
+        topping3 = '0'
+    content = mhelp()
+    return render(request, "index.html", content)
 
 def mhelp():
-    context = {
+    content = {
         "size": Size.objects.all(),
         "kind": Kind.objects.all(),
         "toppings": Toppings.objects.all(),
-        "Sub": Sub.objects.all(),
+        "Sub": Subs.objects.all(),
         "Pasta": Pasta.objects.all(),
         "Salads": Salads.objects.all(),
-        "Dinner": Dinner.objects.all(),
+        "Dinner": Platters.objects.all(),
     }
-    return context
+    return content
