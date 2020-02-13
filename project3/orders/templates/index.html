@@ -6,86 +6,124 @@
     <title>MENU</title>
   </head>
   <body>
-    <a href="/register"><p class="right">register</p></a><br>
-    <a href="/login"><p class="right">login</p></a><br>
-    <a href="/logout"><p class="right">logout</p></a><br>
-    <div id="stepsId">
-  <ol>
-    <li  id="li1">
-    <table id="menu">
-      <tr>
-        <th colspan="3" style="font-size:30px;">MENU</th>
-      </tr>
-      <tr>
-        <th colspan="3">PIZZA</th>
-      </tr>
-      <tr>
-        <th colspan="3">REGULAR / SICILIAN</th>
-      </tr>
-      <tr><td class="center">CHEESE</td></tr>
-      <tr><td class="center">1 TOPPING</td></tr>
-      <tr><td class="center">2 TOPPINGS</td></tr>
-      <tr><td class="center">3 TOPPINGS</td></tr>
-      <tr><td class="center">SPECIAL</td></tr>
-      <tr>
-        <th colspan="3">TOPPINGS</th>
-      </tr>
-      {% for topping in toppings %}
-      <tr>
-        <td class="center" colspan="3">
-          {{ topping }}
-        </td>
-      </tr>
-      {% endfor %}
-      <tr>
-        <th colspan="3">SUBS</th>
-      </tr>
-      {% for subs in Sub %}
-      <tr>
-        <td class="center" colspan="3">
-          {{ subs }}
-        </td>
-      </tr>
-      {% endfor %}
-      <tr>
-        <th colspan="3">PASTA</th>
-      </tr>
-      {% for pastas in Pasta %}
-      <tr>
-        <td class="center" colspan="3">
-          {{ pastas }}
-        </td>
-      </tr>
-      {% endfor %}
-      <tr>
-        <th colspan="3">SALADS</th>
-      </tr>
-      {% for salad in Salads %}
-      <tr>
-        <td class="center" colspan="3">
-          {{ salad }}
-        </td>
-      </tr>
-      {% endfor %}
-      <tr>
-        <th colspan="3">DINNER PLATTERS</th>
-      </tr>
-      {% for plate in Dinner %}
-      <tr>
-        <td class="center" colspan="3">
-          {{ plate }}
-        </td>
-      </tr>
-      {% endfor %}
-    </table>
-  </li>
-  </ol>
-</div>
+    <div class="rightdiv">
+      <a href="/register"><p class="right">register</p></a><br>
+      <a href="/login"><p class="right">login</p></a><br>
+      <a href="/logout"><p class="right">logout</p></a><br>
+    </div>
+    <div class="left">
+      <table id="menu">
+        <tr>
+          <th colspan="3" style="font-size:30px;">MENU</th>
+        </tr>
+        <tr>
+          <th colspan="3">PIZZA</th>
+        </tr>
+        <tr>
+          <th colspan="3">REGULAR / SICILIAN</th>
+        </tr>
+        <tr><td class="center">CHEESE</td></tr>
+        <tr><td class="center">1 TOPPING</td></tr>
+        <tr><td class="center">2 TOPPINGS</td></tr>
+        <tr><td class="center">3 TOPPINGS</td></tr>
+        <tr><td class="center">SPECIAL</td></tr>
+        <tr>
+          <th colspan="3">TOPPINGS</th>
+        </tr>
+        {% for topping in toppings %}
+        <tr>
+          <td class="center" colspan="3">
+            {{ topping }}
+          </td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <th colspan="3">SUBS</th>
+        </tr>
+        {% for subs in Sub %}
+        <tr>
+          <td class="center" colspan="3">
+            {{ subs }}
+          </td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <th colspan="3">PASTA</th>
+        </tr>
+        {% for pastas in Pasta %}
+        <tr>
+          <td class="center" colspan="3">
+            {{ pastas }}
+          </td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <th colspan="3">SALADS</th>
+        </tr>
+        {% for salad in Salads %}
+        <tr>
+          <td class="center" colspan="3">
+            {{ salad }}
+          </td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <th colspan="3">DINNER PLATTERS</th>
+        </tr>
+        {% for plate in Dinner %}
+        <tr>
+          <td class="center" colspan="3">
+            {{ plate }}
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+    <div id="right2">
+            <h2>Pizza</h2>
+            <form action="{% url 'pizza' %}" method="post">
+                {% csrf_token %}
+                <select class="settings" name="pizzaKind">
+                    {% for kinds in kind %}
+                        <option value="{{ kinds }}">{{ kinds }}</option>
+                    {% endfor %}
+                </select>
+                <select class="settings" name="pizzaSize">
+                    {% for sizes in size %}
+                        <option value="{{ sizes }}">{{ sizes }}</option>
+                    {% endfor %}
+                </select>
+                <select class="settings" id="pizzaSelect"name="pizzaName">
+                    <option value="Cheese">Cheese</option>
+                    <option value="1 topping">1 topping</option>
+                    <option value="2 toppings">2 toppings</option>
+                    <option value="3 toppings">3 toppings</option>
+                    <option value="Special">Special</option>
+                </select>
+                <div id="toppingDiv" name="chosenToppings">
+                    <select class="settings" name="topping1">
+                        {% for top in toppings %}
+                            <option value="{{ top }}">{{ top }}</option>
+                        {% endfor %}
+                    </select>
+                    <select class="settings" name="topping2">
+                        {% for top in toppings %}
+                            <option value="{{ top }}">{{ top }}</option>
+                        {% endfor %}
+                    </select>
+                    <select class="settings" name="topping3">
+                        {% for top in toppings %}
+                            <option value="{{ top }}">{{ top }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <input class="settings" type="submit"/>
+            </form>
   </body>
-  <script type="text/javascript">
-  var colors = ["blue", "yellow", "red", "orange", "green"]
+  <!-- <script type="text/javascript">
+  var colors = ["red", "orange", "yellow", "green", "blue", "purple"]
   var currentColor = 0
-  var lis = document.querySelectorAll("#stepsId li")
+  var lis = document.querySelectorAll("body")
 
   function changeColor() {
     --currentColor
@@ -95,6 +133,6 @@
   }
   }
 
-  setInterval(changeColor, 100)
-  </script>
+  setInterval(changeColor, 65)
+  </script> -->
 </html>

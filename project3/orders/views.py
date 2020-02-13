@@ -75,6 +75,19 @@ def pizza(request):
         topping2 = '0'
         topping3 = '0'
     content = mhelp()
+    price = Pizza.objects.all().filter(name=name, kind_kind=kind, size_size=size)
+    price = price.values_list("price", flat=True)[0]
+    saved_list = request.session.get("saved", [])
+    saved_list.append([kind, size, name, topping1, topping2, topping3, str(price)])
+    request.session["saved"] = saved_list
+    totals = request.session.get("total", [])
+    if len(totals) == 0:
+        totals.append(price)
+        request.session["total"] = totals
+    else:
+        totals[0] = totals[0] + price
+    content["total"] = request.session.get("total", [])
+    content["ordered"] = request.session.get("saved", [])
     return render(request, "index.html", content)
 
 def mhelp():
