@@ -177,7 +177,7 @@ def dinner(request):
 
 
 def cart(request):
-    content = menuHelper()
+    content = mhelp()
     saved_list = request.session.get("saved", [])
     name = request.user.get_full_name()
     cart = OrderCart(name=name)
@@ -185,7 +185,7 @@ def cart(request):
     cart.save()
     request.session["saved"] = []
     request.session["total"] = []
-    return render(request, "orders/index.html", context)
+    return render(request, "index.html", content)
 
 
 def mhelp():
