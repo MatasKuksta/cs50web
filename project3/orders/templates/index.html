@@ -79,21 +79,24 @@
         {% endfor %}
       </table>
     </div>
+    <!-- ALL SELECTIONS -->
     <div id="right2">
+      <!-- PIZZA SELECT -->
+      <div id="pizza">
             <h2>Pizza</h2>
             <form action="{% url 'pizza' %}" method="post">
                 {% csrf_token %}
-                <select class="settings" name="pizzaKind">
+                <select class="settings" name="pkind">
                     {% for kinds in kind %}
                         <option value="{{ kinds }}">{{ kinds }}</option>
                     {% endfor %}
                 </select>
-                <select class="settings" name="pizzaSize">
+                <select class="settings" name="psize">
                     {% for sizes in size %}
                         <option value="{{ sizes }}">{{ sizes }}</option>
                     {% endfor %}
                 </select>
-                <select class="settings" id="pizzaSelect"name="pizzaName">
+                <select class="settings" id="pizzaSelect"name="pname">
                     <option value="Cheese">Cheese</option>
                     <option value="1 topping">1 topping</option>
                     <option value="2 toppings">2 toppings</option>
@@ -119,20 +122,104 @@
                 </div>
                 <input class="settings" type="submit"/>
             </form>
+      </div>
+      <!-- SUB SELECT -->
+      <div id="subs">
+        <h2>Subs</h2>
+        <form action="{% url 'subs' %}" method="post">
+            {% csrf_token %}
+            <select class="settings" name="subname">
+                {% for subs in Sub %}
+                    <option value="{{ subs }}">{{ subs }}</option>
+                {% endfor %}
+            </select>
+            <select class="settings" name="subsize">
+                {% for sizes in size %}
+                    <option value="{{ sizes }}">{{ sizes }}</option>
+                {% endfor %}
+            </select>
+            <input class="settings" type="submit"/>
+        </form>
+      </div>
+      <!-- PASTA SELECT -->
+      <div id="pasta">
+        <h2>Pasta</h2>
+        <form action="{% url 'pasta' %}" method="post">
+            {% csrf_token %}
+            <select class="settings" name="pastaname">
+                {% for pastas in Pasta %}
+                    <option value="{{ pastas }}">{{ pastas }}</option>
+                {% endfor %}
+            </select>
+            <input class="settings" type="submit"/>
+        </form>
+      </div>
+      <!-- SALAD SELECT -->
+      <div id="salad">
+        <h2>Salads</h2>
+        <form action="{% url 'salad' %}" method="post">
+            {% csrf_token %}
+            <select class="settings" name="saladname">
+                {% for salad in Salads %}
+                    <option value="{{ salad }}">{{ salad }}</option>
+                {% endfor %}
+            </select>
+            <input class="settings" type="submit"/>
+        </form>
+      </div>
+      <!-- DINNER PLATTER SELECT -->
+      <div id="dinner">
+        <h2>Dinner platters</h2>
+        <form action="{% url 'dinner' %}" method="post">
+            {% csrf_token %}
+            <select class="settings" name="dinnername">
+                {% for dinners in Dinner %}
+                    <option value="{{ dinners }}">{{ dinners }}</option>
+                {% endfor %}
+            </select>
+            <select class="settings" name="dinnersize">
+                {% for sizes in size %}
+                    <option value="{{ sizes }}">{{ sizes }}</option>
+                {% endfor %}
+            </select>
+            <input class="settings" type="submit"/>
+        </form>
+      </div>
+    </div>
+    <!-- CART -->
+    <div class="orders">
+      <h3>Your orders:</h3>
+        <div id="orderContainer">
+          {% for order in ordered %}
+            <div class="order">
+              {% for things in order %}
+                {% if things == '0' %}
+                  {% else %}
+                    {{ things }}
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endfor %}
+        </div>
+        <br>
+        <p>Total: {{ total.0 }}</p>
+    </div>
+    <!-- <div id="spaces">
+      <a id="cartBox" href="{% url 'cart' %}">Place the order</a>
+    </div> -->
   </body>
   <!-- <script type="text/javascript">
-  var colors = ["red", "orange", "yellow", "green", "blue", "purple"]
-  var currentColor = 0
-  var lis = document.querySelectorAll("body")
+    var colors = ["red", "orange", "yellow", "green", "blue", "purple"]
+    var currentColor = 0
+    var lis = document.querySelectorAll("body")
 
-  function changeColor() {
-    --currentColor
-    if (currentColor < 0) currentColor = colors.length -1
-    for (var i = 0; i < lis.length; i++) {
-    lis[i].style.color = colors[(currentColor +i) % colors.length]
-  }
-  }
+    function changeColor() {
+      --currentColor
+      if (currentColor < 0) currentColor = colors.length -1
+      for (var i = 0; i < lis.length; i++) {
+      lis[i].style.color = colors[(currentColor +i) % colors.length]
+    }}
 
-  setInterval(changeColor, 65)
+    setInterval(changeColor, 105)
   </script> -->
 </html>

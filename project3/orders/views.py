@@ -75,7 +75,7 @@ def pizza(request):
         topping2 = '0'
         topping3 = '0'
     content = mhelp()
-    price = Pizza.objects.all().filter(name=name, kind_kind=kind, size_size=size)
+    price = Pizza.objects.all().filter(name=name, kind__kind=kind, size__size=size)
     price = price.values_list("price", flat=True)[0]
     saved_list = request.session.get("saved", [])
     saved_list.append([kind, size, name, topping1, topping2, topping3, str(price)])
@@ -89,6 +89,104 @@ def pizza(request):
     content["total"] = request.session.get("total", [])
     content["ordered"] = request.session.get("saved", [])
     return render(request, "index.html", content)
+
+
+def subs(request):
+    name = request.POST["subname"]
+    size = request.POST["subsize"]
+    content = mhelp()
+    price = Subs.objects.all().filter(sub=name)
+    if size == "Small":
+        price = price.values_list("priceSmall", flat=True)[0]
+    else:
+        price = price.values_list("priceLarge", flat=True)[0]
+    saved_list = request.session.get("saved", [])
+    saved_list.append([name, size, str(price)])
+    request.session["saved"] = saved_list
+    totals = request.session.get("total", [])
+    if len(totals) == 0:
+        totals.append(price)
+        request.session["total"] = totals
+    else:
+        totals[0] = totals[0] + price
+    content["total"] = request.session.get("total", [])
+    content["ordered"] = request.session.get("saved", [])
+    return render(request, "index.html", content)
+
+
+def pasta(request):
+    name = request.POST["pastaname"]
+    content = mhelp()
+    price = Pasta.objects.all().filter(pasta=name)
+    price = price.values_list("price", flat=True)[0]
+    saved_list = request.session.get("saved", [])
+    saved_list.append([name, str(price)])
+    request.session["saved"] = saved_list
+    totals = request.session.get("total", [])
+    if len(totals) == 0:
+        totals.append(price)
+        request.session["total"] = totals
+    else:
+        totals[0] = totals[0] + price
+    content["total"] = request.session.get("total", [])
+    content["ordered"] = request.session.get("saved", [])
+    return render(request, "index.html", content)
+
+
+def salad(request):
+    name = request.POST["saladname"]
+    content = mhelp()
+    price = Salads.objects.all().filter(salad=name)
+    price = price.values_list("price", flat=True)[0]
+    saved_list = request.session.get("saved", [])
+    saved_list.append([name, str(price)])
+    request.session["saved"] = saved_list
+    totals = request.session.get("total", [])
+    if len(totals) == 0:
+        totals.append(price)
+        request.session["total"] = totals
+    else:
+        totals[0] = totals[0] + price
+    content["total"] = request.session.get("total", [])
+    content["ordered"] = request.session.get("saved", [])
+    return render(request, "index.html", content)
+
+
+def dinner(request):
+    name = request.POST["dinnername"]
+    size = request.POST["dinnersize"]
+    content = mhelp()
+    price = Platters.objects.all().filter(platter=name)
+    if size == "Small":
+        price = price.values_list("priceSmall", flat=True)[0]
+    else:
+        price = price.values_list("priceLarge", flat=True)[0]
+    saved_list = request.session.get("saved", [])
+    saved_list.append([name, size, str(price)])
+    request.session["saved"] = saved_list
+    totals = request.session.get("total", [])
+    if len(totals) == 0:
+        totals.append(price)
+        request.session["total"] = totals
+    else:
+        totals[0] = totals[0] + price
+    content["total"] = request.session.get("total", [])
+    content["ordered"] = request.session.get("saved", [])
+    return render(request, "index.html", content)
+
+
+
+def cart(request):
+    content = menuHelper()
+    saved_list = request.session.get("saved", [])
+    name = request.user.get_full_name()
+    cart = OrderCart(name=name)
+    cart.orders = saved_list
+    cart.save()
+    request.session["saved"] = []
+    request.session["total"] = []
+    return render(request, "orders/index.html", context)
+
 
 def mhelp():
     content = {

@@ -12,7 +12,7 @@ body{
   position: absolute;
   right: 50px;
   margin-top: 10px;
-  color: lime;
+  color: black;
   font-weight: bold;
 }
 
@@ -29,18 +29,24 @@ body{
 }
 
 .left{
-  height: 100vh;
+  height: 79vh;
   width: 200px;
   position: relative;
-  margin-right: 200px;
+  margin-right: 130px;
   border-right-width: medium;
+  overflow: scroll;
+  border-style: solid;
 }
 
 #right2{
-  width: 100px;
-  height: 100vh;
+  width: 300px;
+  height: 700px;
   position: relative;
-}
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  }
 
 .settings{
   height: 20px;
@@ -52,4 +58,63 @@ body{
   border-color: black;
   outline: none;
   align-items: center;
+}
+
+#pizza{
+  border-style: solid;
+  border-width: 2px;
+  align-items: center;
+  text-align: center;
+  width: 110px;
+  height: 300px;
+  margin-top: 20px;
+}
+
+#subs{
+  margin-top: 20px;
+  border-style: solid;
+  border-width: 2px;
+  align-items: center;
+  text-align: center;
+  width: 110px;
+  height: 170px;
+}
+
+#pasta{
+  margin-top: 20px;
+  border-style: solid;
+  border-width: 2px;
+  align-items: center;
+  text-align: center;
+  width: 110px;
+  height: 150px;
+}
+
+#salad{
+  margin-top: 20px;
+  border-style: solid;
+  border-width: 2px;
+  align-items: center;
+  text-align: center;
+  width: 110px;
+  height: 150px;
+}
+
+#dinner{
+  margin-top: 20px;
+  border-style: solid;
+  border-width: 2px;
+  align-items: center;
+  text-align: center;
+  width: 110px;
+  height: 190px;
+}
+
+.orders{
+  width: 300px;
+  height: 400px;
+  margin-left: 130px;
+  border-style: solid;
+  padding-left: 10px;
+  overflow: scroll;
 }
