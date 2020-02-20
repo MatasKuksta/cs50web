@@ -204,7 +204,7 @@
       </div>
       <br>
       <p>Total: {{ total.0 }}</p>
-      <div class="yeet">
+      <div id="yeet">
         <a id="order" href="{% url 'cart' %}">ORDER</a>
       </div>
     </div>
@@ -218,7 +218,7 @@
     //   --currentColor
     //   if (currentColor < 0) currentColor = colors.length -1
     //   for (var i = 0; i < lis.length; i++) {
-    //   lis[i].style.color = colors[(currentColor +i) % colors.length]
+    //   lis[i].style.background = colors[(currentColor +i) % colors.length]
     // }}
     //
     // setInterval(changeColor, 105)
@@ -228,10 +228,10 @@
         function checkCart() {
             var cart = "{{ ordered }}"
             if (cart.length > 2){
-                document.getElementById("order").style.visibility = "visible"
+                document.getElementById("id").style.visibility = "visible"
             }
             else {
-                document.getElementById("order").style.visibility= "hidden"
+                document.getElementById("id").style.visibility= "hidden"
             }
         }
   </script>
