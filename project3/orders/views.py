@@ -6,7 +6,7 @@ from django.shortcuts               import render, redirect
 from django.contrib.auth.models     import User
 from django.urls                    import reverse
 from django.template                import RequestContext
-from .models                        import Toppings, Subs, Pasta, Salads, Platters, Size, Kind, Pizza
+from .models                        import Toppings, Subs, Pasta, Salads, Platters, Size, Kind, Pizza, orderCart
 
 # Create your views here.
 def index(request):
@@ -180,7 +180,7 @@ def cart(request):
     content = mhelp()
     saved_list = request.session.get("saved", [])
     name = request.user.get_full_name()
-    cart = OrderCart(name=name)
+    cart = orderCart(name=name)
     cart.orders = saved_list
     cart.save()
     request.session["saved"] = []

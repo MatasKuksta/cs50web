@@ -58,3 +58,11 @@ class Pizza(models.Model):
 
     def __str__(self):
         return f"{self.kind},{self.name}, {self.size}"
+
+
+class orderCart(models.Model):
+    name = models.CharField(max_length=100)
+    orders = models.CharField(max_length=1000, blank=True)
+
+    def __str__(self):
+        return f"{self.name}, {self.orders}"

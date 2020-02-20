@@ -12,6 +12,7 @@
       <a href="/logout"><p class="right">logout</p></a><br>
     </div>
     <div class="left">
+      <!-- MENU -->
       <table id="menu">
         <tr>
           <th colspan="3" style="font-size:30px;">MENU</th>
@@ -189,37 +190,49 @@
     <!-- CART -->
     <div class="orders">
       <h3>Your orders:</h3>
-        <div id="orderContainer">
-          {% for order in ordered %}
-            <div class="order">
-              {% for things in order %}
-                {% if things == '0' %}
-                  {% else %}
-                    {{ things }}
-                {% endif %}
-              {% endfor %}
-            </div>
-          {% endfor %}
-        </div>
-        <br>
-        <p>Total: {{ total.0 }}</p>
-    </div>
-    <div id="spaces">
-      <a id="cartBox" href="{% url 'cart' %}">Place the order</a>
+      <div id="orderContainer">
+        {% for order in ordered %}
+          <div class="order">
+            {% for things in order %}
+              {% if things == '0' %}
+                {% else %}
+                  {{ things }}
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+      <br>
+      <p>Total: {{ total.0 }}</p>
+      <div class="yeet">
+        <a id="order" href="{% url 'cart' %}">ORDER</a>
+      </div>
     </div>
   </body>
-  <!-- <script type="text/javascript">
-    var colors = ["red", "orange", "yellow", "green", "blue", "purple"]
-    var currentColor = 0
-    var lis = document.querySelectorAll("body")
+  <script type="text/javascript">
+    // var colors = ["red", "orange", "yellow", "green", "blue", "purple"]
+    // var currentColor = 0
+    // var lis = document.querySelectorAll("body")
+    //
+    // function changeColor() {
+    //   --currentColor
+    //   if (currentColor < 0) currentColor = colors.length -1
+    //   for (var i = 0; i < lis.length; i++) {
+    //   lis[i].style.color = colors[(currentColor +i) % colors.length]
+    // }}
+    //
+    // setInterval(changeColor, 105)
 
-    function changeColor() {
-      --currentColor
-      if (currentColor < 0) currentColor = colors.length -1
-      for (var i = 0; i < lis.length; i++) {
-      lis[i].style.color = colors[(currentColor +i) % colors.length]
-    }}
 
-    setInterval(changeColor, 105)
-  </script> -->
+    window.addEventListener('load', checkCart)
+        function checkCart() {
+            var cart = "{{ ordered }}"
+            if (cart.length > 2){
+                document.getElementById("order").style.visibility = "visible"
+            }
+            else {
+                document.getElementById("order").style.visibility= "hidden"
+            }
+        }
+  </script>
 </html>

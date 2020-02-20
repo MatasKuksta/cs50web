@@ -22,6 +22,9 @@ body{
   margin-top: 10px;
   color: lime;
   font-weight: bold;
+  width: auto;
+  height: auto;
+  margin-left: 20px;
 }
 
 .center{
@@ -117,4 +120,18 @@ body{
   border-style: solid;
   padding-left: 10px;
   overflow: scroll;
+}
+
+
+#order{
+  color: white;
+  text-decoration: none;
+}
+
+.yeet{
+  height: auto;
+  width: 57px;
+  background-color: grey;
+  outline-style: solid;
+
 }
