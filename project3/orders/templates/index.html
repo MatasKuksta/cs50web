@@ -7,12 +7,11 @@
   </head>
   <body>
     <div class="rightdiv">
-      <a href="/register"><p class="right">register</p></a><br>
-      <a href="/login"><p class="right">login</p></a><br>
-      <a href="/logout"><p class="right">logout</p></a><br>
+      <a id="mom" href="/register">register</a>
+      <a id="mom" href="/login">login</a>
+      <a id="mom" href="/logout">logout</a>
     </div>
     <div class="left">
-      <!-- MENU -->
       <table id="menu">
         <tr>
           <th colspan="3" style="font-size:30px;">MENU</th>
@@ -190,39 +189,36 @@
     <!-- CART -->
     <div class="orders">
       <h3>Your orders:</h3>
-      <div id="orderContainer">
-        {% for order in ordered %}
-          <div class="order">
-            {% for things in order %}
-              {% if things == '0' %}
-                {% else %}
-                  {{ things }}
-              {% endif %}
-            {% endfor %}
-          </div>
-        {% endfor %}
-      </div>
-      <br>
-      <p>Total: {{ total.0 }}</p>
-      <div class="yeet">
+        <div id="orderContainer">
+          {% for order in ordered %}
+            <div class="order">
+              {% for things in order %}
+                {% if things == '0' %}
+                  {% else %}
+                    {{ things }}
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endfor %}
+        </div>
+        <br>
+        <p>Total: {{ total.0 }}</p>
         <a id="order" href="{% url 'cart' %}">ORDER</a>
-      </div>
     </div>
   </body>
   <script type="text/javascript">
-    // var colors = ["red", "orange", "yellow", "green", "blue", "purple"]
-    // var currentColor = 0
-    // var lis = document.querySelectorAll("body")
-    //
-    // function changeColor() {
-    //   --currentColor
-    //   if (currentColor < 0) currentColor = colors.length -1
-    //   for (var i = 0; i < lis.length; i++) {
-    //   lis[i].style.color = colors[(currentColor +i) % colors.length]
-    // }}
-    //
-    // setInterval(changeColor, 105)
+    var colors = ["red", "orange", "yellow", "green", "blue", "purple"]
+    var currentColor = 0
+    var lis = document.querySelectorAll("body")
 
+    function changeColor() {
+      --currentColor
+      if (currentColor < 0) currentColor = colors.length -1
+      for (var i = 0; i < lis.length; i++) {
+      lis[i].style.color = colors[(currentColor +i) % colors.length]
+    }}
+
+    setInterval(changeColor, 75)
 
     window.addEventListener('load', checkCart)
         function checkCart() {
