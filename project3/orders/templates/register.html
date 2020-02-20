@@ -5,15 +5,31 @@
         {% load static %}
         <link rel="stylesheet" type="text/css" href="../static/style.css">
     <body>
-        <a href="/login"><p class="right">login</p></a><br>
+      <div class="rightdiv">
+        <a id="mom" href="/login">login</a>
+      </div>
         <form action="{% url 'register' %}" method="post">
             {% csrf_token %}
-            <input class="margin" name="username" type="text" placeholder="Username" required/><br>
-            <input class="margin" name="password" type="password" placeholder="Password" required/><br>
-            <input class="margin" name="email" type="text" placeholder="Email" required/><br>
-            <input class="margin" name="firstname" type="text" placeholder="First Name" required/><br>
-            <input class="margin" name="lastname" type="text" placeholder="Last Name" required/><br>
-            <input class="margin" type="submit" value="Register"/>
+            <input class="settings2" name="username" type="text" placeholder="Username" required/><br>
+            <input class="settings2" name="password" type="password" placeholder="Password" required/><br>
+            <input class="settings2" name="email" type="text" placeholder="Email" required/><br>
+            <input class="settings2" name="firstname" type="text" placeholder="First Name" required/><br>
+            <input class="settings2" name="lastname" type="text" placeholder="Last Name" required/><br>
+            <input class="settings" type="submit" value="Register"/>
         </form>
     </body>
+    <script type="text/javascript">
+      var colors = ["red", "orange", "yellow", "green", "blue", "purple"]
+      var currentColor = 0
+      var lis = document.querySelectorAll("body")
+
+      function changeColor() {
+        --currentColor
+        if (currentColor < 0) currentColor = colors.length -1
+        for (var i = 0; i < lis.length; i++) {
+        lis[i].style.color = colors[(currentColor +i) % colors.length]
+      }}
+
+      setInterval(changeColor, 75)
+    </script>
 </html>
