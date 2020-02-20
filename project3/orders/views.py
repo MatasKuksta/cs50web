@@ -45,13 +45,17 @@ def login(request):
             auth_login(request, user)
             return HttpResponseRedirect(reverse("index"))
         else:
-            return redirect(request, "error.html")
+            return HttpResponseRedirect(reverse("error"))
     else:
         return render(request, "login.html")
 
 def logout(request):
     auth_logout(request)
     return render(request, "login.html", {"message": "logged out user"})
+
+
+def error(request):
+    return render(request, "error.html")
 
 
 def pizza(request):

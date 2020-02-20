@@ -69,7 +69,7 @@ body{
   outline: none;
   align-items: center;
   color: inherit;
-  border-color: inherit;
+  border-color: black;
 }
 
 #pizza{
@@ -143,4 +143,12 @@ body{
 
 ::placeholder{
   color: inherit;
+}
+
+.parrot{
+  position: absolute;
+  margin-top: 200px;
+  height: 1000px;
+  width: 1000px;
+  left: 20%
 }

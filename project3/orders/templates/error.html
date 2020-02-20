@@ -2,12 +2,32 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
     <title></title>
   </head>
   <body>
-    <a href="/register"><p class="right">register</p></a><br>
-    <a href="/login"><p class="right">login</p></a><br>
-    <a href="/logout"><p class="right">logout</p></a><br>
-    USERNAME AND PASSWORD DO NOT MATCH
+    <div class="rightdiv">
+      <a id="mom" href="/register">register</a>
+      <a id="mom" href="/login">login</a>
+      <a id="mom" href="/logout">logout</a>
+    </div>
+    <h1>USERNAME AND PASSWORD DO NOT MATCH</h1>
+    <div class="parrot">
+      <img src="https://thumbs.gfycat.com/UnimportantRespectfulAndeancat.webp" alt="yeet" width="800px">
+    </div>
   </body>
+  <script type="text/javascript">
+    var colors = ["red", "orange", "yellow", "green", "blue", "purple"]
+    var currentColor = 0
+    var lis = document.querySelectorAll("body")
+
+    function changeColor() {
+      --currentColor
+      if (currentColor < 0) currentColor = colors.length -1
+      for (var i = 0; i < lis.length; i++) {
+      lis[i].style.color = colors[(currentColor +i) % colors.length]
+    }}
+
+    setInterval(changeColor, 75)
+    </script>
 </html>
