@@ -1,8 +1,10 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <title>MENU</title>
   </head>
   <body>
@@ -224,10 +226,10 @@
         function checkCart() {
             var cart = "{{ ordered }}"
             if (cart.length > 2){
-                document.getElementById("id").style.visibility = "visible"
+                document.getElementById("order").style.visibility = "visible"
             }
             else {
-                document.getElementById("id").style.visibility= "hidden"
+                document.getElementById("order").style.visibility= "hidden"
             }
         }
   </script>
