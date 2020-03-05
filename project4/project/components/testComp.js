@@ -7,3 +7,11 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
+
+const ManoKomponentas = ({tekstas}) => {
+  return (
+    <>
+    <View></View/>
+    
+  )
+}
