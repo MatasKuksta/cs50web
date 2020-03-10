@@ -8,10 +8,20 @@ import {
   StatusBar,
 } from 'react-native';
 
-const ManoKomponentas = ({tekstas}) => {
+export const ManoKomponentas = ({tekstas}) => {
   return (
     <>
-    <View></View/>
-    
+      <Text style={{color: 'red',fontWeight: 'bold' ,marginTop: '50%' ,marginLeft: '40%'}}>
+      As einu gatve
+      </Text>
+    </>
+  )
+}
+
+export const Headeris = () => {
+  return (
+    <>
+    <View style={{backgroundColor: 'blue' ,height: '20%' ,width:'100%', position: 'absolute' ,top: '0'}}></View>
+    </>
   )
 }
